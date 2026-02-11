@@ -1,7 +1,7 @@
 from app import db
 
 class Task(db.Model):
-    id = db.column(db.Integer, Primary_key = True)
-    title = db.column(db.String(100), nullable = False)
-    status = db.column(db.String(20), default="Pending")
+    id = db.Column(db.Integer, Primary_key = True)
+    title = db.Column(db.String(100), nullable = False)
+    status = db.Column(db.String(20), default="Pending")
     
