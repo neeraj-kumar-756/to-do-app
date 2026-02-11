@@ -6,36 +6,34 @@
 {% block content %}
     <div class="task-box">
     <h1> My Tasks </h1>
-    <form action="{{ url_for('tasks.add_tasks') }}" method="POST" class="task-form"> 
+    <form action="{{ url_for('task.add') }}" method="POST" class="task-form"> 
         <input type="text" name="title" placeholder="new task" required>
         <button type="submit" class="btn">add</button>
     </form>
     {% if tasks %}
-    <form action="{{ url_for('task.clear_tasks') }}" method="POST">
+    <form action="{{ url_for('task.clear_all') }}" method="POST">
         <button type="submit" class="btn btn-clear" >clear all task </button>
     </form>    
-<br>
+    <br>
 
-<table class="task-table">
+    <table class="task-table">
     <thead>
         <tr>
             <th>task</th>
             <th>status</th>
-            <th>change</th>
-            
+            <th>change</th>            
         </tr>
     </thead>
     <tbody>
         {% for task in tasks %}
         <tr>
-            <td>{{ loop.index }}</td>
-            <td>{{ loop.title }}</td>
+            <td>{{ task.title }}</td>
             <td>
-                <span class=" badge {{ task.status|lower}}"> </span>
+                <span class="badge {{ task.status|lower}}">{{ task.status }}</span>
             </td>
             <td>
-                <form action="{{ url_for('tasks.toggle_status',task_id=task.id) }}" method="POST">
-                    <button type="submit" class="btn-small">Next</button>
+                <form action="{{ url_for('task.toggle_status',task_id=task.id) }}" method="POST">
+                    <button type="submit" class="btn-small">Toggle</button>
                 </form>
             </td>
         </tr>
@@ -43,12 +41,11 @@
         {% endfor %}
     </tbody>
 
-</table>
-{% else %}
-<p>
-    No task yet. Add one above! 
-</p>
-
-{% endif %}
+    </table>
+    {% else %}
+        <p>
+            No task yet. Add one above! 
+        </p>
+    {% endif %}
     </div>    
 {% endblock %}

@@ -11,31 +11,33 @@
     <header>
         <div class="container">
             <h1>
-                this is my to do app 
-            </h1>
+                This is my TO-DO app 
+            </h1>t
             <nav>
-                <a href="{{ url_for(task.view_tasks) }}"> Home </a>
+                <a href="{{ url_for('task.view_tasks') }}"> Home </a>
+                {% if 'user_id' in session %}
+                <a href="{{ url_for('auth.logout') }}"> logout </a>              
+                {% else %}
+                <a href="{{ url_for('auth.login') }}"> login </a>     
+                {% endif %}
             </nav>
-            {% if 'user' in session %}
-            <a href="{{ url_for(auth.logout) }}"></a>              
-            {% else %}
-            <a href="{{ url_for(auth.login) }}"></a>     
-            {% endif %}
         </div>
     </header>
 
     <main>
-    {% with messages = get_flashed_message(with_categories=True)  %}
-        {% for category,message in messages %}
-         <div class="flash {{category}}"> {{message}} </div>    
-        {% endfor %}
-        
-    {% endwith %}
+        <div class="container">
+            {% with messages = get_flashed_messages(with_categories=True)  %}
+                {% for category,message in messages %}
+                <div class="flash {{category}}"> {{ message }} </div>    
+                {% endfor %}
+            {% endwith %}
+            {% block content %}{% endblock %}
+        </div>
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy;{{2025}} neeraj and gang 👨‍💻</p>
+            <p>&copy;{{2025}} Build With 💝 By Team NAVV</p>
         </div>
     </footer>    
 

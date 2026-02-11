@@ -3,6 +3,9 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f8f9fa;
 
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 .container{
     max-width: 800px;
@@ -27,17 +30,22 @@ header h1{
 nav{
      text-align: center;
      margin-top: 10px;
-}
+    }
+
 nav a{
     color:white;
     text-decoration: none;
     margin: 0 15px;
-    font-weight: 500px;
+    font-weight: 500;
     transition: color 0.30 ease;
 }
 nav a:hover {
     color: goldenrod;
 
+}
+
+main {
+    /* flex-grow is no longer needed with the margin-top: auto on the footer */
 }
 
 footer{
@@ -46,11 +54,16 @@ footer{
     padding: 15px 0;
     text-align:center;
     font-size: 14px;
-    margin-top: 60px;
+    margin-top: auto;
     box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
 }
 footer a{
     margin: 0;
+}
+.flash{
+    border: 1px;
+    border-radius: 4px;
+    text-align: center;
 }
 
 .flash.success{color: green;}
@@ -81,7 +94,7 @@ footer a{
     margin-bottom: 6px;    
 }
 .form-group input{
-    width: 100px;
+    width: 100%;
     padding: 12px;
     font-size: 16px;
     border-radius: 4px;
@@ -130,6 +143,10 @@ footer a{
 .task-form .btn {
     padding: 12px 20px;
     font-size: 16px;
+    width: 100px;
+    border-radius: 4px;
+    cursor: pointer;
+
 }
 
 .task-table {
@@ -156,7 +173,7 @@ background-color: #f2f2f2;
     border-radius: 4px;
     text-decoration: none; }
 
-btn-delete:hover {
+.btn-delete:hover {
 background-color: #c82333;
 }
 .badge {
@@ -170,7 +187,7 @@ background-color: #c82333;
 background-color: #ffc107
 }
 .badge.working {
-background-color: #317a2b;
+background-color: blue;
 }
 .badge.done {
 background-color: #28a745
@@ -180,16 +197,14 @@ background-color: #28a745
 font-size: 12px;
 padding: 6px 12px;
 border: none;
-background-color:
-#6c767d;
+background-color: #6c767d;
 color: white;
 border-radius: 4px;
 cursor: pointer;
 }
 
 .btn-small:hover {
-background-color:
-#495057;
+background-color: #495057;
 }
 
 .btn-clear {

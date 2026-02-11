@@ -1,9 +1,46 @@
 {% extends 'base.html' %}
-{% block title %}
-    register here 
-{% endblock %}
-{% block content %}
-<h1> fill the your details please </h1>
 
-    
+{% block title %}
+    Sign Up
+{% endblock %}
+
+{% block content %}
+<div class="login-box">
+    <h2>Sign Up</h2>
+    {# Use novalidate to disable browser's default validation and rely on WTForms #}
+    <form action="{{ url_for('auth.signup') }}"  method="POST" novalidate>
+        {{ form.hidden_tag() }} {# Important: CSRF token #}
+        
+        <div class="form-group">
+            {{ form.username.label }}
+            {{ form.username() }} {# Renders the input field #}
+            {% if form.username.errors %}
+                {% for error in form.username.errors %}
+                    <p style="color: red; font-size: 0.9em;">{{ error }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            {{ form.email.label }}
+            {{ form.email() }}
+            {% if form.email.errors %}
+                {% for error in form.email.errors %}
+                    <p style="color: red; font-size: 0.9em;">{{ error }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            {{ form.password.label }}
+            {{ form.password() }}
+            {% if form.password.errors %}
+                {% for error in form.password.errors %}
+                    <p style="color: red; font-size: 0.9em;">{{ error }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+        {{ form.submit(class="btn") }}
+    </form>
+</div>
 {% endblock %}
